@@ -1,0 +1,5 @@
+/* 全局样式 */
+@import "./global.css";
+
+/* 重置样式 */
+@import "./reset.css"
