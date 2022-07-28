@@ -2,7 +2,8 @@ import React, {memo} from "react";
 import {NavLink} from "react-router-dom";
 
 import {HeaderWrapper, HeaderLeftWrapper, HeaderRightWrapper} from "./style";
-
+import {Input} from "antd";
+import {SearchOutlined} from "@ant-design/icons";
 import {headerLinks} from "../../common/local-data";
 
 export default memo(function YKAppHeader() {
@@ -30,7 +31,7 @@ export default memo(function YKAppHeader() {
             <div className="select-list">
               {headerLinks.map((item, index) => {
                 return (
-                  <div className="select-item">
+                  <div className="select-item" key={index}>
                     {showSelectItem(item, index)}
                   </div>
                 );
@@ -38,7 +39,13 @@ export default memo(function YKAppHeader() {
             </div>
           </HeaderLeftWrapper>
           <HeaderRightWrapper>
-            <div>右边部分</div>
+            <Input
+              className="search"
+              placeholder="音乐/视频/电台/用户"
+              prefix={<SearchOutlined />}
+            ></Input>
+            <div className="center">创作者中心</div>
+            <div>登录</div>
           </HeaderRightWrapper>
         </div>
         <div className="divider"></div>

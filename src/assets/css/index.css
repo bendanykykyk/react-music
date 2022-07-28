@@ -1,5 +1,8 @@
 /* 全局样式 */
 @import "./global.css";
 
+/* ant */
+@import './ant.css';
+
 /* 重置样式 */
 @import "./reset.css"
