@@ -19,9 +19,7 @@ export default memo(function YKAppFooter() {
             {footerLinks.map((item, index) => {
               return (
                 <>
-                  <a href={item.link} key={index}>
-                    {item.title}
-                  </a>
+                  <a href={item.link}>{item.title}</a>
                   {Line(index)}
                 </>
               );
@@ -67,7 +65,7 @@ export default memo(function YKAppFooter() {
         <AppFooterRightWrapper>
           {footerImages.map((item) => {
             return (
-              <li className="item">
+              <li className="item" key={item.title}>
                 <a
                   className="link"
                   href={item.link}
