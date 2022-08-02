@@ -1,13 +1,24 @@
 import React, {memo, useEffect} from "react";
+import {useDispatch, useSelector, shallowEqual} from "react-redux";
 
-import {getTopBanner} from "@/services/recommend";
+import {getBanner, getRecommend} from "./store/actionCreators";
 
 const YKRecommend = memo(() => {
+  const state = useSelector(
+    (state) => ({
+      banners: state.getIn(["recommend", "topBanners"]),
+    }),
+    shallowEqual
+  );
+  const dispatch = useDispatch();
   useEffect(() => {
-    getTopBanner().then((res) => {
-      console.log(res);
-    });
-  });
+    dispatch(getBanner());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getRecommend());
+  }, [dispatch]);
+  console.log(state);
   return <div>YKRecommend</div>;
 });
 

@@ -8,12 +8,17 @@ import {HashRouter} from "react-router-dom";
 import YKAppHeader from "@/components/app-header";
 import YKAppFooter from "@/components/app-footer";
 
+import {Provider} from "react-redux";
+import store from "./store";
+
 export default memo(function App() {
   return (
-    <HashRouter>
-      <YKAppHeader></YKAppHeader>
-      {renderRoutes(routes)}
-      <YKAppFooter></YKAppFooter>
-    </HashRouter>
+    <Provider store={store}>
+      <HashRouter>
+        <YKAppHeader></YKAppHeader>
+        {renderRoutes(routes)}
+        <YKAppFooter></YKAppFooter>
+      </HashRouter>
+    </Provider>
   );
 });
