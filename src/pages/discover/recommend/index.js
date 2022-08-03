@@ -1,25 +1,58 @@
-import React, {memo, useEffect} from "react";
-import {useDispatch, useSelector, shallowEqual} from "react-redux";
+import React, {memo, useEffect, useState, useCallback} from "react";
 
-import {getBanner, getRecommend} from "./store/actionCreators";
+import {RecommendWrapper, BannerLeft, BannerRight} from "./style";
+
+import {Carousel} from "antd";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+
+import {getBanner} from "./store/actionCreators";
 
 const YKRecommend = memo(() => {
-  const state = useSelector(
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const dispatch = useDispatch();
+  const {topBanners} = useSelector(
     (state) => ({
-      banners: state.getIn(["recommend", "topBanners"]),
+      topBanners: state.getIn(["recommend", "topBanners"]),
     }),
     shallowEqual
   );
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBanner());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getRecommend());
-  }, [dispatch]);
-  console.log(state);
-  return <div>YKRecommend</div>;
+  const bannerChange = useCallback((from, to) => {
+    setTimeout(() => {
+      setCurrentIndex(to);
+    }, 0);
+  }, []);
+
+  const bgImage =
+    topBanners[currentIndex] &&
+    topBanners[currentIndex].imageUrl + "?imageView&blur=40x20";
+
+  return (
+    <RecommendWrapper bgImage={bgImage}>
+      <div className="banner wrap-v2">
+        <BannerLeft>
+          <Carousel effect="fade" autoplay beforeChange={bannerChange}>
+            {topBanners.map((banner) => {
+              return (
+                <div className="banner-item" key={banner.imageUrl}>
+                  <img
+                    className="image"
+                    src={banner.imageUrl}
+                    alt={banner.imageUrl}
+                  />
+                </div>
+              );
+            })}
+          </Carousel>
+        </BannerLeft>
+        <BannerRight></BannerRight>
+      </div>
+    </RecommendWrapper>
+  );
 });
 
 export default YKRecommend;
