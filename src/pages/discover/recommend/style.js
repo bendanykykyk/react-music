@@ -1,27 +1,20 @@
 import styled from "styled-components";
 
-export const RecommendWrapper = styled.div`
-  background: url(${(props) => props.bgImage});
-  .banner {
-    height: 270px;
-    display: flex;
-  }
+export const RecommendWrapper = styled.div``;
+
+export const Content = styled.div`
+  display: flex;
+  background-color: #fff;
+  /* border: 1px solid #d3d3d3; */
 `;
 
-export const BannerLeft = styled.div`
-  width: 730px;
-  .banner-item {
-    height: 270px;
-    .image {
-      width: 100%;
-    }
-  }
+export const RecommendLeft = styled.div`
+  width: 729px;
+  padding: 20px;
 `;
-export const BannerRight = styled.a.attrs({
-  href: "https://music.163.com/#/download",
-  target: "_blank",
-})`
-  width: 254px;
-  height: 270px;
-  background: url(${require("@/assets/img/download.png")});
+
+export const RecommendRight = styled.div`
+  width: 250px;
+  border: 1px solid #d3d3d3;
+  border-width: 0 1px;
 `;
