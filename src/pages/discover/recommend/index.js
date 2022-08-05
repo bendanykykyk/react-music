@@ -8,6 +8,7 @@ import {
 } from "./style";
 
 import TopBanner from "./cnps/top-banner";
+import YKNewAlbum from "./cnps/new-album";
 const YKRecommend = memo(() => {
   return (
     <RecommendWrapper>
@@ -15,6 +16,7 @@ const YKRecommend = memo(() => {
       <Content className="wrap-v2">
         <RecommendLeft>
           <YKHotRecommend></YKHotRecommend>
+          <YKNewAlbum></YKNewAlbum>
         </RecommendLeft>
         <RecommendRight></RecommendRight>
       </Content>

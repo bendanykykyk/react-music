@@ -1,4 +1,5 @@
 import React, {memo} from "react";
+import {PropTypes} from "prop-types";
 import {Link} from "react-router-dom";
 import {ThemeHeaderNavWrapper} from "./style";
 
@@ -28,5 +29,16 @@ const ThemeHeaderNav = memo((props) => {
     </ThemeHeaderNavWrapper>
   );
 });
+
+// 默认值
+ThemeHeaderNav.defaultProps = {
+  keywords: [],
+};
+// 类型
+ThemeHeaderNav.propTypes = {
+  keywords: PropTypes.array,
+  title: PropTypes.string.isRequired,
+  moreLink: PropTypes.string.isRequired,
+};
 
 export default ThemeHeaderNav;
